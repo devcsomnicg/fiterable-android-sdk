@@ -3,7 +3,4 @@
     android:id="@+id/notificationViewActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!-- Customize the layout of your CustomCardView activity here -->
-
 </com.example.filterable_android_sdk.NotificationView>

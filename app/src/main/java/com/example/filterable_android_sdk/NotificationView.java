@@ -39,7 +39,7 @@ public class NotificationView extends CardView {
 
     private void init() {
         inflate(getContext(), R.layout.notification_view, this);
-        cardView = findViewById(R.id.card_view);
+        cardView = findViewById(R.id.notification_view);
         titleText = findViewById(R.id.titleText);
         descriptionText = findViewById(R.id.descriptionText);
         primaryButton = findViewById(R.id.primaryButton);

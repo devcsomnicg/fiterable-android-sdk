@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NotificationViewActivity" />
+        <activity android:name=".CardViewActivity" />
 
 
         <!-- Other activities and components of your app -->
