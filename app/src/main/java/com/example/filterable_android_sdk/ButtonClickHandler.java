@@ -1,2 +1,5 @@
-package com.example.filterable_android_sdk;public interface ButtonClickHandler {
+package com.example.filterable_android_sdk;
+
+public interface ButtonClickHandler {
+    void execute();
 }
