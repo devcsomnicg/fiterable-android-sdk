@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Message;
+import android.os.Messenger;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -104,6 +106,42 @@ public class BannerView extends CardView {
         layoutParams.width = intent.getIntExtra("imageWidth", LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.height = intent.getIntExtra("imageHeight", LinearLayout.LayoutParams.WRAP_CONTENT);
         image.setLayoutParams(layoutParams);
+
+        primaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get the messenger from the intent
+                Messenger messenger = intent.getParcelableExtra("messenger");
+
+                // Send a message to the main activity
+                Message message = new Message();
+                message.what = 1;
+                message.obj = "Primary Button clicked";
+                try {
+                    messenger.send(message);
+                } catch (Exception e) {
+                    // Handle the exception
+                }
+            }
+        });
+
+        secondaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get the messenger from the intent
+                Messenger messenger = intent.getParcelableExtra("messenger");
+
+                // Send a message to the main activity
+                Message message = new Message();
+                message.what = 1;
+                message.obj = "Secondary Button clicked";
+                try {
+                    messenger.send(message);
+                } catch (Exception e) {
+                    // Handle the exception
+                }
+            }
+        });
 
     }
 }

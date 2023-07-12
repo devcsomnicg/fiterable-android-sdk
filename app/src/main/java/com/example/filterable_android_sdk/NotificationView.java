@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Message;
+import android.os.Messenger;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -86,6 +88,42 @@ public class NotificationView extends CardView {
         backgroundDrawable.setCornerRadius(intent.getIntExtra("primaryButtonRadius", 50));
         primaryButton.getBackground().setColorFilter((intent.getIntExtra("primaryButtonBackgroundColor", Color.parseColor("#FF4081"))), PorterDuff.Mode.SRC);
         primaryButton.setBackground(backgroundDrawable);
+
+        primaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get the messenger from the intent
+                Messenger messenger = intent.getParcelableExtra("messenger");
+
+                // Send a message to the main activity
+                Message message = new Message();
+                message.what = 1;
+                message.obj = "Primary Button clicked";
+                try {
+                    messenger.send(message);
+                } catch (Exception e) {
+                    // Handle the exception
+                }
+            }
+        });
+
+        secondaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get the messenger from the intent
+                Messenger messenger = intent.getParcelableExtra("messenger");
+
+                // Send a message to the main activity
+                Message message = new Message();
+                message.what = 1;
+                message.obj = "Secondary Button clicked";
+                try {
+                    messenger.send(message);
+                } catch (Exception e) {
+                    // Handle the exception
+                }
+            }
+        });
 
     }
 
