@@ -10,14 +10,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello, World!"
+        android:text="Select a view"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/launch_button"
+        android:id="@+id/card_view_launch_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Launch Notification Activity" />
+        android:text="Show Card View" />
+
+    <Button
+        android:id="@+id/banner_view_launch_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Banner View" />
+
+    <Button
+        android:id="@+id/notification_view_launch_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Notification View" />
 
 </LinearLayout>

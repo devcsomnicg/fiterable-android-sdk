@@ -9,41 +9,43 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
+import com.squareup.picasso.Picasso;
 
-public class NotificationView extends CardView {
+public class CardView extends androidx.cardview.widget.CardView {
 
-    private CardView cardView;
+    private androidx.cardview.widget.CardView cardView;
     private TextView titleText;
     private TextView descriptionText;
     private Button primaryButton;
     private Button secondaryButton;
+    private ImageView image;
 
-    public NotificationView(Context context) {
+    public CardView(Context context) {
         super(context);
         init();
     }
 
-    public NotificationView(Context context, AttributeSet attrs) {
+    public CardView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public NotificationView(Context context, AttributeSet attrs, int defStyle) {
+    public CardView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
     private void init() {
-        inflate(getContext(), R.layout.notification_view, this);
-        cardView = findViewById(R.id.notification_view);
+        inflate(getContext(), R.layout.card_view, this);
+        cardView = findViewById(R.id.card_view);
         titleText = findViewById(R.id.titleText);
         descriptionText = findViewById(R.id.descriptionText);
         primaryButton = findViewById(R.id.primaryButton);
         secondaryButton = findViewById(R.id.secondaryButton);
+        image = findViewById(R.id.image);
         this.updateValues();
     }
 
@@ -51,6 +53,11 @@ public class NotificationView extends CardView {
 
         // Retrieve the passed values from the intent
         Intent intent = ((Activity) getContext()).getIntent();
+
+        //card image
+        if (!intent.getStringExtra("imageUrl").isEmpty()) {
+            Picasso.get().load(intent.getStringExtra("imageUrl")).into(image);
+        }
 
         //card config
         cardView.setRadius(intent.getIntExtra("cardRadius", 4));
@@ -68,7 +75,7 @@ public class NotificationView extends CardView {
 
         //primary button of the card
         primaryButton.setText(intent.getStringExtra("primaryButtonText"));
-        primaryButton.setTextColor(intent.getIntExtra("primaryButtonTextColor", Color.parseColor("#ffffff")));
+        primaryButton.setTextColor(intent.getIntExtra("primaryButtonTextColor", Color.parseColor("#000000")));
 
         //secondary button of the card
         secondaryButton.setText(intent.getStringExtra("secondaryButtonText"));
@@ -80,14 +87,5 @@ public class NotificationView extends CardView {
         } else {
             secondaryButton.setVisibility(View.GONE);
         }
-
-        // Get the current background drawable of the button
-        GradientDrawable backgroundDrawable = (GradientDrawable) primaryButton.getBackground();
-        backgroundDrawable.setCornerRadius(intent.getIntExtra("primaryButtonRadius", 50));
-        primaryButton.getBackground().setColorFilter((intent.getIntExtra("primaryButtonBackgroundColor", Color.parseColor("#FF4081"))), PorterDuff.Mode.SRC);
-        primaryButton.setBackground(backgroundDrawable);
-
     }
-
-
 }
