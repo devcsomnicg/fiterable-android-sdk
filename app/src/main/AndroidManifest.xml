@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.filterable_android_sdk">
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.filterable_android_sdk">
 
     <application
         android:allowBackup="true"
@@ -28,9 +26,7 @@
         </activity>
         <activity android:name=".NotificationViewActivity" />
         <activity android:name=".CardViewActivity" />
-
-
-        <!-- Other activities and components of your app -->
+        <activity android:name=".BannerViewActivity" />
 
     </application>
 

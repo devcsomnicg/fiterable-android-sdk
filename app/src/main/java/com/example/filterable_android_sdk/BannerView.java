@@ -23,7 +23,7 @@ public class BannerView extends CardView {
 
     private TextView titleText;
     private TextView descriptionText;
-    private ImageView logoImageView;
+    private ImageView image;
     private CardView cardView;
     private Button primaryButton;
     private Button secondaryButton;
@@ -47,23 +47,11 @@ public class BannerView extends CardView {
         inflate(getContext(), R.layout.banner_view, this);
         titleText = findViewById(R.id.titleText);
         descriptionText = findViewById(R.id.descriptionText);
-        logoImageView = findViewById(R.id.logoImageView);
+        image = findViewById(R.id.image);
         cardView = findViewById(R.id.banner_view);
         primaryButton = findViewById(R.id.primaryButton);
         secondaryButton = findViewById(R.id.secondaryButton);
         this.updateValues();
-    }
-
-    public void setTitle(String title) {
-        titleText.setText(title);
-    }
-
-    public void setDescription(String description) {
-        descriptionText.setText(description);
-    }
-
-    public void setLogoImageUrl(String imageUrl) {
-        Picasso.get().load(imageUrl).into(logoImageView);
     }
 
     public void updateValues() {
@@ -106,15 +94,16 @@ public class BannerView extends CardView {
         primaryButton.getBackground().setColorFilter((intent.getIntExtra("primaryButtonBackgroundColor", Color.parseColor("#FF4081"))), PorterDuff.Mode.SRC);
         primaryButton.setBackground(backgroundDrawable);
 
-        // logo image of the card
-        String logoImageUrl = intent.getStringExtra("logoImageUrl");
-        Picasso.get().load(logoImageUrl).into(logoImageView);
+        // card image
+        if (!intent.getStringExtra("imageUrl").isEmpty()) {
+            Picasso.get().load(intent.getStringExtra("imageUrl")).into(image);
+        }
 
-        // Get the current layout params of the logoImageView
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) logoImageView.getLayoutParams();
-        layoutParams.width = intent.getIntExtra("logoWidth", LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.height = intent.getIntExtra("logoHeight", LinearLayout.LayoutParams.WRAP_CONTENT);
-        logoImageView.setLayoutParams(layoutParams);
+        // Get the current layout params of the card image
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) image.getLayoutParams();
+        layoutParams.width = intent.getIntExtra("imageWidth", LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.height = intent.getIntExtra("imageHeight", LinearLayout.LayoutParams.WRAP_CONTENT);
+        image.setLayoutParams(layoutParams);
 
     }
 }

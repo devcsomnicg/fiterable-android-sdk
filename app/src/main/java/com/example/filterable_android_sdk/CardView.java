@@ -54,11 +54,6 @@ public class CardView extends androidx.cardview.widget.CardView {
         // Retrieve the passed values from the intent
         Intent intent = ((Activity) getContext()).getIntent();
 
-        //card image
-        if (!intent.getStringExtra("imageUrl").isEmpty()) {
-            Picasso.get().load(intent.getStringExtra("imageUrl")).into(image);
-        }
-
         //card config
         cardView.setRadius(intent.getIntExtra("cardRadius", 4));
         cardView.setCardBackgroundColor(intent.getIntExtra("cardBackgroundColor", Color.parseColor("#ffffff")));
@@ -86,6 +81,11 @@ public class CardView extends androidx.cardview.widget.CardView {
             secondaryButton.setVisibility(View.VISIBLE);
         } else {
             secondaryButton.setVisibility(View.GONE);
+        }
+
+        //card image
+        if (!intent.getStringExtra("imageUrl").isEmpty()) {
+            Picasso.get().load(intent.getStringExtra("imageUrl")).into(image);
         }
     }
 }
