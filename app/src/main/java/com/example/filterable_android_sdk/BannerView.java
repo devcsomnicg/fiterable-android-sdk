@@ -9,43 +9,48 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ImageView;
+
+
+import androidx.cardview.widget.CardView;
+
 
 import com.squareup.picasso.Picasso;
 
-public class CardView extends androidx.cardview.widget.CardView {
+public class BannerView extends CardView {
 
-    private androidx.cardview.widget.CardView cardView;
     private TextView titleText;
     private TextView descriptionText;
+    private ImageView image;
+    private CardView cardView;
     private Button primaryButton;
     private Button secondaryButton;
-    private ImageView image;
 
-    public CardView(Context context) {
+    public BannerView(Context context) {
         super(context);
         init();
     }
 
-    public CardView(Context context, AttributeSet attrs) {
+    public BannerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public CardView(Context context, AttributeSet attrs, int defStyle) {
+    public BannerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
     private void init() {
-        inflate(getContext(), R.layout.card_view, this);
-        cardView = findViewById(R.id.card_view);
+        inflate(getContext(), R.layout.banner_view, this);
         titleText = findViewById(R.id.titleText);
         descriptionText = findViewById(R.id.descriptionText);
+        image = findViewById(R.id.image);
+        cardView = findViewById(R.id.banner_view);
         primaryButton = findViewById(R.id.primaryButton);
         secondaryButton = findViewById(R.id.secondaryButton);
-        image = findViewById(R.id.image);
         this.updateValues();
     }
 
@@ -70,7 +75,7 @@ public class CardView extends androidx.cardview.widget.CardView {
 
         //primary button of the card
         primaryButton.setText(intent.getStringExtra("primaryButtonText"));
-        primaryButton.setTextColor(intent.getIntExtra("primaryButtonTextColor", Color.parseColor("#000000")));
+        primaryButton.setTextColor(intent.getIntExtra("primaryButtonTextColor", Color.parseColor("#ffffff")));
 
         //secondary button of the card
         secondaryButton.setText(intent.getStringExtra("secondaryButtonText"));
@@ -83,9 +88,22 @@ public class CardView extends androidx.cardview.widget.CardView {
             secondaryButton.setVisibility(View.GONE);
         }
 
-        //card image
+        // Get the current background drawable of the button
+        GradientDrawable backgroundDrawable = (GradientDrawable) primaryButton.getBackground();
+        backgroundDrawable.setCornerRadius(intent.getIntExtra("primaryButtonRadius", 50));
+        primaryButton.getBackground().setColorFilter((intent.getIntExtra("primaryButtonBackgroundColor", Color.parseColor("#FF4081"))), PorterDuff.Mode.SRC);
+        primaryButton.setBackground(backgroundDrawable);
+
+        // card image
         if (!intent.getStringExtra("imageUrl").isEmpty()) {
             Picasso.get().load(intent.getStringExtra("imageUrl")).into(image);
         }
+
+        // Get the current layout params of the card image
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) image.getLayoutParams();
+        layoutParams.width = intent.getIntExtra("imageWidth", LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.height = intent.getIntExtra("imageHeight", LinearLayout.LayoutParams.WRAP_CONTENT);
+        image.setLayoutParams(layoutParams);
+
     }
 }
