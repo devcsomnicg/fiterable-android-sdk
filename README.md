@@ -1,10 +1,12 @@
 # fiterable-android-sdk
 copy of iterable android sdk
 ## Banner View
-![Screenshot_2023-07-12-22-05-06-347_com example filterable_android_sdk](https://github.com/devcsomnicg/fiterable-android-sdk/assets/93832078/4f3b599b-50b9-4fbc-96e9-eacc92606a9b)
+![image](https://github.com/devcsomnicg/fiterable-android-sdk/assets/129495456/95727b13-02a8-4b56-b065-01d53201f57b)
 
-##Notification View
-![Screenshot_2023-07-12-00-59-50-942_com example filterable_android_sdk](https://github.com/devcsomnicg/fiterable-android-sdk/assets/93832078/9b21c36e-d589-4218-8232-81d7138e1fdc)
 
-##Card View
-![Screenshot_2023-07-12-21-39-09-892_com example filterable_android_sdk](https://github.com/devcsomnicg/fiterable-android-sdk/assets/93832078/86d9b944-ec5b-4b65-8a6b-38e61730bf06)
+## Notification View
+![image](https://github.com/devcsomnicg/fiterable-android-sdk/assets/129495456/0f61dd95-71b7-4c7a-8246-5d45b7ab2bb1)
+
+
+## Card View
+![image](https://github.com/devcsomnicg/fiterable-android-sdk/assets/129495456/84ec64be-85a4-4a72-9010-d88df4cdf87b)
